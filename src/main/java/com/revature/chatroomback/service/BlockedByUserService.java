@@ -17,7 +17,7 @@ public interface BlockedByUserService {
 	
 	void delete(Integer id);
 
-	void update(BlockedByUser blockedByUser);
+	void update(BlockedByUser obj);
 	
 	
 

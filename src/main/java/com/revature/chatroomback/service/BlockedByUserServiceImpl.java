@@ -24,7 +24,6 @@ public class BlockedByUserServiceImpl implements BlockedByUserService {
 
 	@Transactional
 	public Integer findUserIdandBlockedId(BlockedByUser obj) {
-		//add the validation here
 		int blockingUserId = obj.getBlockingUserId();
 		int blockedUserId = obj.getBlockedUserId();
 		return blockedByUserDAO.findifBlocked(blockingUserId, blockedUserId);

@@ -28,29 +28,33 @@ import com.revature.chatroomback.validator.ChatroomValidator;
 @RequestMapping("BlockedByUser")
 public class BlockedByUserController {
 
-	Logger logger = LogManager.getLogger(ChatroomValidator.class);
+	Logger logger = LogManager.getLogger(BlockedByUserController.class);
 	
 	@Autowired
 	private BlockedByUserService blockedByUserService;
 	
 	@Autowired
 	private ChatroomValidator chatroomCheck;
+	
+	
 
 	@PostMapping()
 	public @ResponseBody ResponseEntity<HttpStatus> register(@RequestBody BlockedByUser obj) {
 		int userId = obj.getBlockingUserId();
 		int blockedId = obj.getBlockedUserId();
+		
 		String msg = " user: "+ userId + " blocked " + blockedId;
 		String error = " user: "+ userId + " blocked " + blockedId + "already exists";
+		
 		try {
 			
 			 if (chatroomCheck.doubleBlock(obj)) {
-				 logger.info(error);
+				logger.info(error);
 				 return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
 			}else {
 				blockedByUserService.registerBlockedByUser(obj);
-				logger.info(msg); 
-				return new ResponseEntity<HttpStatus>(HttpStatus.ACCEPTED);
+				logger.info(msg);
+				return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
 			}
 				
 		} catch (Exception e) {

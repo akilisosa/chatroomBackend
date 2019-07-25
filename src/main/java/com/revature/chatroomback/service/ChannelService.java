@@ -12,13 +12,13 @@ public interface ChannelService {
 
 	List<Channel> list();
 	
-	Channel findOne(Integer id);
+	List<Channel> listByType(String type);
 	
-	List<Channel> listByType(Integer type);
+	List<Channel> listByUser(Channel obj);
 	
-	Channel getPM(Channel channel);
+	Channel getPrivateMessage(Channel obj);
+
+	void update(Channel obj);
 	
 	void delete(Integer id);
-
-	void update(Channel channel);
 }

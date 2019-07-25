@@ -19,10 +19,10 @@ public class Channel implements Serializable {
 	private static final long serialVersionUID = -8335028713964196526L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chat_channel_gen")
-	@SequenceGenerator(name = "chat_channel_gen", sequenceName = "CHAT_CHANNEL_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chat_channels_gen")
+	@SequenceGenerator(name = "chat_channels_gen", sequenceName = "CHAT_CHANNELS_seq", allocationSize = 1)
 	@Column(name = "CHANNELID")
-	private Integer channelId;
+	private Integer id;
 
 	@Column(name = "CHANNELNAME")
 	private String channelName;
@@ -36,12 +36,12 @@ public class Channel implements Serializable {
 	@Column(name = "CHANNELUSER2")
 	private Integer channelUser2;
 
-	public Integer getChannelId() {
-		return channelId;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setChannelId(Integer channelId) {
-		this.channelId = channelId;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getChannelName() {
@@ -80,11 +80,11 @@ public class Channel implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((channelId == null) ? 0 : channelId.hashCode());
 		result = prime * result + ((channelName == null) ? 0 : channelName.hashCode());
 		result = prime * result + ((channelType == null) ? 0 : channelType.hashCode());
 		result = prime * result + ((channelUser1 == null) ? 0 : channelUser1.hashCode());
 		result = prime * result + ((channelUser2 == null) ? 0 : channelUser2.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -97,11 +97,6 @@ public class Channel implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Channel other = (Channel) obj;
-		if (channelId == null) {
-			if (other.channelId != null)
-				return false;
-		} else if (!channelId.equals(other.channelId))
-			return false;
 		if (channelName == null) {
 			if (other.channelName != null)
 				return false;
@@ -122,19 +117,17 @@ public class Channel implements Serializable {
 				return false;
 		} else if (!channelUser2.equals(other.channelUser2))
 			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Channel [channelId=" + channelId + ", channelName=" + channelName + ", channelType=" + channelType
-				+ ", channelUser1=" + channelUser1 + ", channelUser2=" + channelUser2 + "]";
-	}
-
-	public Channel(Integer channelId, String channelName, Integer channelType, Integer channelUser1,
-			Integer channelUser2) {
+	public Channel(Integer id, String channelName, Integer channelType, Integer channelUser1, Integer channelUser2) {
 		super();
-		this.channelId = channelId;
+		this.id = id;
 		this.channelName = channelName;
 		this.channelType = channelType;
 		this.channelUser1 = channelUser1;
@@ -145,7 +138,6 @@ public class Channel implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
+
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.revature.chatroomback.controller.BlockedByUserController;
 import com.revature.chatroomback.models.BlockedByUser;
+import com.revature.chatroomback.models.Channel;
 import com.revature.chatroomback.service.BlockedByUserService;
 import com.revature.chatroomback.validator.ChatroomValidator;
 
@@ -18,6 +19,7 @@ public class ChatroombackBlockedByUserTests {
 	private ChatroomValidator chatroomCheck;
 
 	BlockedByUser obj = new BlockedByUser();
+	Channel channelObj = new Channel();
 	
 		@Test
 		public void contextLoads() {
@@ -29,6 +31,16 @@ public class ChatroombackBlockedByUserTests {
 			
 			
 		}
+		
+//		@Test
+//		
+//		public void doubleChannels() {
+//			
+//			channelObj.setChannelUser1(1);
+//			channelObj.setChannelUser2(2);
+//			chatroomCheck.multiplePM(channelObj);
+//		}
+		
 
 	
 }
