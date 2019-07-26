@@ -1,0 +1,9 @@
+addons:
+  sonarcloud:
+    organization: "akilisosa-github"
+    token:
+      secure: "29fda3b1ed4a63b72c1c9deaa20c8e07c9c85201" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=akilisosa_chatroomBackend
