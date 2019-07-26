@@ -9,25 +9,23 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.revature.chatroomback.models.User;
+import com.revature.chatroomback.models.UserInfo;
+
 @Repository
-public interface UserDAO extends JpaRepository<User,Integer>{
+public  interface UserInfoDAO extends JpaRepository<UserInfo,Integer>{
+
 	
 	@SuppressWarnings("unchecked")
-	User save(User user);
+	UserInfo save(UserInfo user);
 	
-	@Query("select u from User u")
-	List<User> list();
+	@Query("select u from UserInfo u")
+	List<UserInfo> list();
 	
-	@Query("select u from User u where u.id = :id")
-	User findOne(@Param("id") Integer id);
+	@Query("select u from UserInfo u where u.id = :id")
+	UserInfo findOne(@Param("id") Integer id);
 
 	@Modifying
-	@Query("delete from User where id = :id")
+	@Query("delete from UserInfo where id = :id")
 	void delete(@Param("id") Integer id);
 	
-	@Query("select u from User u where u.email = :email and u.password = :password")
-	User findByEmailAndPassword(@Param("email") String email, @Param("password") String password);
-
-	
-
 }

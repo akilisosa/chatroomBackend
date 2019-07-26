@@ -47,17 +47,12 @@ public class ChannelController {
 	}
 	
 	@GetMapping("/{type}")
-	public List<Channel> listByType(@PathVariable("type") Integer type) {
+	public List<Channel> listByType(@PathVariable("type") String type) {
 		logger.info("ChannelController->listed by channel types");
 		List<Channel> channels = channelService.listByType(type);
 		return channels;
 	}
 
-	@GetMapping("/{id}")
-	public Channel findOne(@PathVariable("id") Integer id) {
-		Channel channel = channelService.findOne(id);
-		return channel;
-	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Integer id) {

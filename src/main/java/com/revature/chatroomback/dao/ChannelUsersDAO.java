@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.revature.chatroomback.models.ChannelUsers;
 
+@Repository
 public interface ChannelUsersDAO extends JpaRepository<ChannelUsers,Integer>{
 
 	@SuppressWarnings("unchecked")
@@ -22,5 +24,5 @@ public interface ChannelUsersDAO extends JpaRepository<ChannelUsers,Integer>{
 
 	@Modifying
 	@Query("delete from ChannelUsers where id = :userId")
-	void delete(@Param("userId") Integer id);
+	void delete(@Param("userId") Integer id); 
 }

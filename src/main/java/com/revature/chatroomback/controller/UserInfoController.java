@@ -15,47 +15,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.revature.chatroomback.models.User;
-import com.revature.chatroomback.service.UserService;
 
+import com.revature.chatroomback.models.UserInfo;
+import com.revature.chatroomback.service.UserInfoService;
 
 @RestController
-@RequestMapping("User")
-public class UserController {
+@RequestMapping("UserInfo")
+public class UserInfoController {
 	
-Logger logger = LogManager.getLogger(UserController.class);
+	Logger logger = LogManager.getLogger(UserInfoController.class);
 	
 	@Autowired
-	private UserService userService;
-
+	private UserInfoService userInfoService;
+	
 	@PostMapping()
-	public @ResponseBody void register(@RequestBody User obj){
-		logger.info("Registered a new User with email" + obj.getEmail());
-		userService.registerUser(obj);
-	}
+	public @ResponseBody void register(@RequestBody UserInfo obj){
+		logger.info("UserInfoController->started new userInfo for user: " + obj.getId());
+		userInfoService.registerUserInfo(obj);
+	}	
 
 	@PutMapping("/{id}")
-	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody User user) {
+	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody UserInfo userInfo) {
 		logger.info("UserController->update" + id);
-		userService.update(user);
+		userInfoService.update(userInfo);
 	}
-
+	
 	@GetMapping()
-	public List<User> list() {
-		List<User> list = userService.list();
-		return list;
+	public List<UserInfo> list() {
+		logger.warn("UserInfoController-> someobody called the list user info that shouldn't happen");
+		return userInfoService.list();
 	}
 
 	@GetMapping("/{id}")
-	public User findOne(@PathVariable("id") Integer id) {
-		return userService.findOne(id);
+	public UserInfo findOne(@PathVariable("id") Integer id) {
+		logger.info("UserInfo  found one!");
+		return userInfoService.findOne(id);
 	}
 	
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Integer id) {
-		userService.delete(id);
+		logger.info("Somebody deleted somebody");
+		userInfoService.delete(id);
 	}
-	
-	
 }

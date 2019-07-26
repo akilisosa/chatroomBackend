@@ -13,21 +13,21 @@ import com.revature.chatroomback.models.User;
 @SpringBootTest
 public class UpdatePasswordTest {
 	
-//	@Autowired
-//	private UserDAO userDAO;
-//	
-//	User user = new User();
-//	
-//	@Test
-//	public void updatePassword() {
-//		
-//		Integer id = 1;
-//		String password = "pass123";
-//		
-//		userDAO.updatePassword(id, password);
-//		
-//		
-//	}
-//	
+	@Autowired
+	private UserDAO userDAO;
+	
+	User user = new User();
+	
+	@Test
+	public void updatePassword() {
+		user.setId(1);
+		
+		user.setPassword("pass123");
+		
+		userDAO.save(user);
+		
+		
+	}
+	
 
 }

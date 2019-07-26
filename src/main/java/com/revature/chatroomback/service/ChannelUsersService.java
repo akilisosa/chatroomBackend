@@ -5,6 +5,7 @@ import java.util.List;
 import com.revature.chatroomback.models.ChannelUsers;
 
 public interface ChannelUsersService {
+	
 	void registerChannelUsers(ChannelUsers user);
 
 	List<ChannelUsers> list();

@@ -22,14 +22,14 @@ import com.revature.chatroomback.service.ChannelUsersService;
 @RequestMapping("ChannelUsers")
 public class ChannelUsersController {
 
-	Logger logger = LogManager.getLogger(ChannelController.class);
+	Logger logger = LogManager.getLogger(ChannelUsersController.class);
 	
 	@Autowired
 	private ChannelUsersService channelUsersService;
 
 	@PostMapping()
 	public @ResponseBody void register(@RequestBody ChannelUsers obj){
-		System.out.println("UserController->save");
+		logger.info("UserController->save a new user" + obj.getChannelUser());
 		channelUsersService.registerChannelUsers(obj);
 	}
 

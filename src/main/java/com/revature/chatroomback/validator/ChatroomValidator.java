@@ -26,7 +26,6 @@ public class ChatroomValidator {
 	public boolean doubleBlock(BlockedByUser obj) {
 		try {
 			Integer service = blockedByUserService.findUserIdandBlockedId(obj);
-
 			if (service == null) {
 				logger.info("the block feature is going fine");
 				return false; 
