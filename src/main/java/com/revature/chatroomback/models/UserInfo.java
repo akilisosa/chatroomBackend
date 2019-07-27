@@ -124,7 +124,6 @@ public class UserInfo implements Serializable {
 
 	public UserInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	

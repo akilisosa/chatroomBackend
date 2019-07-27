@@ -82,7 +82,6 @@ public class ChannelUsers implements Serializable {
 
 	public ChannelUsers() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

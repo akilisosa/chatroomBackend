@@ -29,7 +29,7 @@ public class ChannelUsersController {
 
 	@PostMapping()
 	public @ResponseBody void register(@RequestBody ChannelUsers obj){
-		logger.info("UserController->save a new user" + obj.getChannelUser());
+		logger.info("UserController->save a new user", obj.getChannelUser());
 		channelUsersService.registerChannelUsers(obj);
 	}
 

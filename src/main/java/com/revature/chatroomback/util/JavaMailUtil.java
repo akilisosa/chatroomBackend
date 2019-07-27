@@ -8,8 +8,6 @@ import javax.mail.internet.MimeMessage;
 
 import org.apache.logging.log4j.*;
 
-import com.revature.chatroomback.validator.ChatroomValidator;
-
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
@@ -20,7 +18,7 @@ public class JavaMailUtil {
 	    throw new IllegalStateException("Utility class");
 	  }
 	
-	Logger logger = LogManager.getLogger(ChatroomValidator.class);
+	static Logger logger = LogManager.getLogger(JavaMailUtil.class);
 	
 public static void sendReimburseMail(String recipient) throws Exception {
 	Properties properties = new Properties();
@@ -56,6 +54,7 @@ private static Message prepareMassage(Session session, String myAccountEmail, St
 		message.setContent(reimburseComplete, "text/html");
 		return message;
 	} catch(Exception e) {
+		logger.info("alright something crazy happened");
 	}
 	return null;
 }}

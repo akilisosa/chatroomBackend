@@ -26,8 +26,7 @@ public interface ChannelDAO extends JpaRepository<Channel,Integer>{
 	List<Channel> listByUser(@Param("channelUser1") Integer channelUser1);
 	
 	@Query("select u from Channel u where u.channelUser1 =: user1 AND u.channelUser2 =: user2 OR u.channelUser1 =: user2 AND u.channelUser2 =: channelUser1 ")
-	Channel getPrivateMessage(Integer user1, Integer user2);
-	
+	Channel getPrivateMessage(@Param("channelUser1")Integer user1, @Param("channelUser2")Integer user2);
 	
 	@Modifying
 	@Query("delete from Channel where id = :id")

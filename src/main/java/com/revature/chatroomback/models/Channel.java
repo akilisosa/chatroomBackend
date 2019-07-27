@@ -136,7 +136,6 @@ public class Channel implements Serializable {
 
 	public Channel() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	

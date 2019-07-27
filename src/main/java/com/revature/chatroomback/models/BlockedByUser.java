@@ -106,7 +106,6 @@ public class BlockedByUser implements Serializable {
 
 	public BlockedByUser() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	

@@ -30,7 +30,7 @@ Logger logger = LogManager.getLogger(UserController.class);
 
 	@PostMapping()
 	public @ResponseBody void register(@RequestBody User obj){
-		logger.info("Registered a new User with email" + obj.getEmail());
+		logger.info("Registered a new User with email", obj.getEmail());
 		userService.registerUser(obj);
 	}
 

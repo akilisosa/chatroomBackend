@@ -30,7 +30,7 @@ public class UserInfoController {
 	
 	@PostMapping()
 	public @ResponseBody void register(@RequestBody UserInfo obj){
-		logger.info("UserInfoController->started new userInfo for user: " + obj.getId());
+		logger.info("UserInfoController->started new userInfo for user: ", obj.getId());
 		userInfoService.registerUserInfo(obj);
 	}	
 
