@@ -6,14 +6,23 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.logging.log4j.*;
+
+import com.revature.chatroomback.validator.ChatroomValidator;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 
 public class JavaMailUtil {
+	
+	private JavaMailUtil() {
+	    throw new IllegalStateException("Utility class");
+	  }
+	
+	Logger logger = LogManager.getLogger(ChatroomValidator.class);
+	
 public static void sendReimburseMail(String recipient) throws Exception {
-	System.out.println("Preparing to send email");
 	Properties properties = new Properties();
 	
 	properties.put("mail.smtp.auth", true);
@@ -33,7 +42,6 @@ public static void sendReimburseMail(String recipient) throws Exception {
 	
 	Message message = prepareMassage(session, myAccountEmail, recipient);
 	Transport.send(message);
-	System.out.println("Message sent successfully!");
 }
 
 private static Message prepareMassage(Session session, String myAccountEmail, String recipient) {
@@ -46,10 +54,8 @@ private static Message prepareMassage(Session session, String myAccountEmail, St
 				+ "Your reimbursement has been completed! Log into view your reimbursement.<br/><br/>"
 				+ "Thank you!<br/> Team Sara"; 
 		message.setContent(reimburseComplete, "text/html");
-		//message.setText("Hey there, your ");
 		return message;
 	} catch(Exception e) {
-	//	Logger.getLogger(JavaMailUtil.class.getName(), null).log(Level.SEVERE, null);
 	}
 	return null;
 }}

@@ -10,9 +10,7 @@ public interface ChannelUsersService {
 
 	List<ChannelUsers> list();
 	
-	List<ChannelUsers> listFindMany();
-	
-	ChannelUsers findOne(Integer id);
+	List<ChannelUsers> properList(Integer channelId);
 	
 	void delete(Integer id);
 

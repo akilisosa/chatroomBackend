@@ -14,38 +14,33 @@ import com.revature.chatroomback.models.ChannelUsers;
 public class ChannelUsersServiceImpl implements ChannelUsersService{
 
 	@Autowired
-	private ChannelUsersDAO ChannelUsersDAO;// = new channelChannelUserssDAO();
+	private ChannelUsersDAO channelUsersDAO;
 	
 	@Transactional
 	public void registerChannelUsers(ChannelUsers channelusers) {
-		ChannelUsersDAO.save(channelusers);
+		channelUsersDAO.save(channelusers);
 	}
 
 	@Transactional
 	public List<ChannelUsers> list() {
-		return ChannelUsersDAO.list();
+		return channelUsersDAO.list();
 	}
 	
 	@Transactional
-	public ChannelUsers findOne(Integer id) {
-		return ChannelUsersDAO.findOne(id);
+	public List<ChannelUsers> properList(Integer channelId) {
+		return channelUsersDAO.properList(channelId);
 	}
 	
 	@Transactional
 	public void delete(Integer id) {
-		ChannelUsersDAO.delete(id);
+		channelUsersDAO.delete(id);
 	}
 
 	@Transactional
 	public void update(ChannelUsers channelusers) {
-		ChannelUsersDAO.save(channelusers);
+		channelUsersDAO.save(channelusers);
 	}
 
-	@Override
-	public List<ChannelUsers> listFindMany() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 }

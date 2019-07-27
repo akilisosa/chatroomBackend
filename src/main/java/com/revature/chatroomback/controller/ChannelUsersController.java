@@ -35,20 +35,18 @@ public class ChannelUsersController {
 
 	@PutMapping("/{id}")
 	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody ChannelUsers user) {
-		System.out.println("UserController->update" + id);
+		logger.info("UserController->update" + id);
 		channelUsersService.update(user);
 	}
 
 	@GetMapping()
 	public List<ChannelUsers> list() {
-		List<ChannelUsers> list = channelUsersService.list();
-		return list;
+		return channelUsersService.list();
 	}
 
 	@GetMapping("/{id}")
 	public ChannelUsers findOne(@PathVariable("id") Integer id) {
-		ChannelUsers user = channelUsersService.findOne(id);
-		return user;
+		return channelUsersService.findOne(id);
 	}
 
 	@DeleteMapping("/{id}")

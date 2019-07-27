@@ -14,7 +14,7 @@ import com.revature.chatroomback.models.User;
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
-	private UserDAO userDAO;// = new UserDAO();
+	private UserDAO userDAO;
 	
 	@Transactional
 	public void registerUser(User user) {
@@ -43,8 +43,7 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public User findByEmailAndPassword(String email, String password) {
-		User user = userDAO.findByEmailAndPassword(email, password);
-		return user;
+		return userDAO.findByEmailAndPassword(email, password);
 	}
 
 

@@ -14,7 +14,7 @@ import com.revature.chatroomback.models.UserInfo;
 public class UserInfoServiceImpl implements UserInfoService{
 	
 	@Autowired
-	private UserInfoDAO userinfoDAO;// = new UserinfoDAO();
+	private UserInfoDAO userinfoDAO;
 	
 	@Transactional
 	public void registerUserInfo(UserInfo userinfo) {

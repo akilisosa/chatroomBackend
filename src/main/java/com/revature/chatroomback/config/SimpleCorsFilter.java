@@ -19,10 +19,8 @@ import org.springframework.stereotype.Component;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class SimpleCorsFilter implements Filter {
 
-    private final String local = "http://localhost:8055";
-    //private final String sosaStudios = "https://www.sosaanimationstudios.com";
-	
-
+    private static final String local = "http://localhost:8055";
+  
 	public SimpleCorsFilter() {
 		//this is just default filter i don't know how it works
 	}    

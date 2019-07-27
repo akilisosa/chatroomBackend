@@ -36,7 +36,7 @@ public class UserInfoController {
 
 	@PutMapping("/{id}")
 	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody UserInfo userInfo) {
-		logger.info("UserController->update" + id);
+		logger.info("UserController->update", id);
 		userInfoService.update(userInfo);
 	}
 	

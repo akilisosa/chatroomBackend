@@ -27,21 +27,13 @@ public class CommentServiceImpl implements CommentService{
 	}
 
 	@Transactional
-	public List<Comment> list() {
-		//commentDAO.list();
-		return null;
-	}
-
-	@Transactional
 	public List<Comment> findCommentUser(Integer commentUser) {
-		commentDAO.findByCommentUser(commentUser);
-		return null;
+		return commentDAO.findByCommentUser(commentUser);
 	}
 
 	@Transactional
 	public List<Comment> findByCommentTable(Integer commentTable) {
-		commentDAO.findByCommentTable(commentTable);
-		return null;
+		return commentDAO.findByCommentTable(commentTable);
 	}
 
 	@Transactional

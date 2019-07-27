@@ -22,7 +22,7 @@ public class DataSourceConfig {
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource);
-		em.setPackagesToScan(new String[] { "com.revature.chatroomback" });
+		em.setPackagesToScan("com.revature.chatroomback");
 
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		em.setJpaVendorAdapter(vendorAdapter);
@@ -37,7 +37,6 @@ public class DataSourceConfig {
 		properties.put("hibernate.dialect", "org.hibernate.dialect.Oracle12cDialect");
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
-		// properties.put("hibernate.hbm2ddl.auto", "none");
 		return properties;
 	}
 

@@ -9,8 +9,6 @@ public interface CommentService {
 	void save(Comment newComment);
 	
 	void registerComment(Comment obj);
-
-	List<Comment> list();
 	
 	List<Comment> findCommentUser(Integer commentUser);
 	

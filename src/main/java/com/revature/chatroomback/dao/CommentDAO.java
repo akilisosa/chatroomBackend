@@ -16,9 +16,6 @@ public interface CommentDAO extends JpaRepository<Comment,Integer>{
 	@SuppressWarnings("unchecked")
 	Comment save(Comment newComment);
 
-//	@Query("select u from Comment u")
-//	List<Comment> list();
-	
 	@Query("select u from Comment u where u.commentUser = :commentUser")
 	List<Comment> findByCommentUser(@Param("commentUser") Integer commentUser);
 	

@@ -2,6 +2,7 @@ package com.revature.chatroomback.dao;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -19,10 +20,13 @@ public interface ChannelUsersDAO extends JpaRepository<ChannelUsers,Integer>{
 	@Query("select u from ChannelUsers u where u.channelUser = :channelUser")
 	List<ChannelUsers> list();
 	
-	@Query("select u from ChannelUsers u where u.id = :userId")
-	ChannelUsers findOne(@Param("userId") Integer id);
+	@Query("select u from ChannelUsers u where u.channelId =: channelId and u.status = 1")
+	List<ChannelUsers> properList(@Param("channelId") Integer channelId);
+
+	@Query("select u from ChannelUsers u where u.channelUser = :channelUser")
+	ChannelUsers findOne(@Param("channelUser") Integer channelUser);
 
 	@Modifying
-	@Query("delete from ChannelUsers where id = :userId")
-	void delete(@Param("userId") Integer id); 
+	@Query("delete from ChannelUsers where channelUser = :channelUser")
+	void delete(@Param("channelUser") Integer channelUser); 
 }

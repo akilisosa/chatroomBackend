@@ -1,5 +1,7 @@
 package com.revature.chatroomback.daotest;
 
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,12 @@ public class UpdatePasswordTest {
 	@Test
 	public void updatePassword() {
 		user.setId(1);
-		
+		user.setEmail("akili@gmail.com");
 		user.setPassword("pass123");
+		user.setStatus("1");
+		user.setAdminLvl("2");
 		
-		userDAO.save(user);
+		assertNotNull(userDAO.save(user));
 		
 		
 	}

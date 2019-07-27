@@ -36,14 +36,13 @@ Logger logger = LogManager.getLogger(UserController.class);
 
 	@PutMapping("/{id}")
 	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody User user) {
-		logger.info("UserController->update" + id);
+		logger.info("UserController->update", id);
 		userService.update(user);
 	}
 
 	@GetMapping()
 	public List<User> list() {
-		List<User> list = userService.list();
-		return list;
+		return userService.list();
 	}
 
 	@GetMapping("/{id}")

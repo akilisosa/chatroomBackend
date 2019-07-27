@@ -48,13 +48,13 @@ public class CommentController {
 	
 	@GetMapping("/channel/{commentTable}")
 	public List<Comment> listByTable(Integer commentTable){
-		logger.info("channel "+ commentTable + "comments is being called.");
+		logger.info("channel comments is being called.");
 		return commentService.findByCommentTable(commentTable);
 	}
 	
 	@GetMapping("/user/{commentUser}")
 	public List<Comment> listByUser(Integer commentUser){
-		logger.info("this user " + commentUser +  " looks at their comments");
+		logger.info("user looks at their comments");
 		return commentService.findCommentUser(commentUser);
 	}
 

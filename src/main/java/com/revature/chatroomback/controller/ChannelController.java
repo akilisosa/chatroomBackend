@@ -42,15 +42,13 @@ public class ChannelController {
 	@GetMapping()
 	public List<Channel> list() {
 		logger.info("ChannelController->listed all channels");
-		List<Channel> list = channelService.list();
-		return list;
+		return channelService.list();
 	}
 	
 	@GetMapping("/{type}")
 	public List<Channel> listByType(@PathVariable("type") String type) {
 		logger.info("ChannelController->listed by channel types");
-		List<Channel> channels = channelService.listByType(type);
-		return channels;
+		return channelService.listByType(type);
 	}
 
 

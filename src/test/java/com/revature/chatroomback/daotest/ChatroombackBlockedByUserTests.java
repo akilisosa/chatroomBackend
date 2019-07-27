@@ -1,5 +1,7 @@
 package com.revature.chatroomback.daotest;
 
+import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class ChatroombackBlockedByUserTests {
 			obj.setBlockedUserId(1);
 			obj.setBlockingUserId(2);
 			
-			chatroomCheck.doubleBlock(obj);
+			assertNull(chatroomCheck.doubleBlock(obj));
 			
 			
 		}

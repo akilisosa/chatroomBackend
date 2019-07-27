@@ -49,16 +49,16 @@ public class BlockedByUserController {
 			
 			 if (chatroomCheck.doubleBlock(obj)) {
 				logger.info(error);
-				 return new ResponseEntity<HttpStatus>(HttpStatus.CONFLICT);
+				 return new ResponseEntity<>(HttpStatus.CONFLICT);
 			}else {
 				blockedByUserService.registerBlockedByUser(obj);
 				logger.info(msg);
-				return new ResponseEntity<HttpStatus>(HttpStatus.CREATED);
+				return new ResponseEntity<>(HttpStatus.CREATED);
 			}
 				
 		} catch (Exception e) {
 			logger.fatal(error+"caused by some other error");
-			return new ResponseEntity<HttpStatus>(HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 		}
 	}
 

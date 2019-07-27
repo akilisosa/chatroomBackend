@@ -9,13 +9,12 @@ import org.springframework.stereotype.Service;
 
 import com.revature.chatroomback.dao.BlockedByUserDAO;
 import com.revature.chatroomback.models.BlockedByUser;
-import com.revature.chatroomback.service.BlockedByUserService;
 
 @Service //this one has the service
 public class BlockedByUserServiceImpl implements BlockedByUserService {
 
 	@Autowired
-	private BlockedByUserDAO blockedByUserDAO;// = new UserDAO();
+	private BlockedByUserDAO blockedByUserDAO;
 	
 	@Transactional
 	public void registerBlockedByUser(BlockedByUser blockedByUser) {
