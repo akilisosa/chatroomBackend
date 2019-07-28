@@ -38,13 +38,6 @@ public class CommentController {
 		logger.info("there isn't a feature for this yet");
 		commentService.update(newComment);
 	}
-
-	@GetMapping()
-	public List<Comment> list() {
-		logger.info("somebody pulled the whole list for some reason");
-		List<Comment> list = commentService.list();
-		return list;
-	}
 	
 	@GetMapping("/channel/{commentTable}")
 	public List<Comment> listByTable(Integer commentTable){

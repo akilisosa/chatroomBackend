@@ -44,11 +44,6 @@ public class ChannelUsersController {
 		return channelUsersService.list();
 	}
 
-	@GetMapping("/{id}")
-	public ChannelUsers findOne(@PathVariable("id") Integer id) {
-		return channelUsersService.findOne(id);
-	}
-
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable("id") Integer id) {
 		channelUsersService.delete(id);

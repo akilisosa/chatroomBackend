@@ -20,7 +20,7 @@ public interface ChannelUsersDAO extends JpaRepository<ChannelUsers,Integer>{
 	@Query("select u from ChannelUsers u where u.channelUser = :channelUser")
 	List<ChannelUsers> list();
 	
-	@Query("select u from ChannelUsers u where u.channelId =: channelId and u.status = 1")
+	@Query("select u from ChannelUsers u where u.channelId =: channelId")
 	List<ChannelUsers> properList(@Param("channelId") Integer channelId);
 
 	@Query("select u from ChannelUsers u where u.channelUser = :channelUser")
