@@ -30,11 +30,6 @@ public class BlockedByUserServiceImpl implements BlockedByUserService {
 	}
 	
 	@Transactional
-	public List<BlockedByUser> list() {
-		return blockedByUserDAO.list();
-	}
-	
-	@Transactional
 	public List<BlockedByUser> findBlocked(Integer id) {
 		return blockedByUserDAO.findBlocked(id);
 	}
@@ -42,11 +37,6 @@ public class BlockedByUserServiceImpl implements BlockedByUserService {
 	@Transactional
 	public void delete(Integer id) {
 		blockedByUserDAO.delete(id);
-	}
-
-	@Override
-	public void update(BlockedByUser blockedByUser) {
-		blockedByUserDAO.save(blockedByUser);
 	}
 
 	

@@ -5,6 +5,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,32 +31,35 @@ public class CommentController {
 	private CommentService commentService;
 	
 	@PostMapping()
-	public @ResponseBody void register(@RequestBody Comment newComment) {
+	public @ResponseBody ResponseEntity<HttpStatus> register(@RequestBody Comment newComment) {
 		logger.info("this user" + newComment.getCommentUser() + "made a new comment");
 		commentService.registerComment(newComment);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@PutMapping("/{id}")
-	public @ResponseBody void update(@PathVariable("id") Integer id, @RequestBody Comment newComment){
-		logger.info("there isn't a feature for this yet");
+	public @ResponseBody ResponseEntity<HttpStatus> update(@PathVariable("id") Integer id, @RequestBody Comment newComment){
+		logger.info("there isn't a feature for this yet so it shouldn't be called");
 		commentService.update(newComment);
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("/channel/{commentTable}")
-	public List<Comment> listByTable(Integer commentTable){
+	@GetMapping(value="/channel/{commentTable}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Comment>> listByTable(Integer commentTable){
 		logger.info("channel comments is being called.");
-		return commentService.findByCommentTable(commentTable);
+		return new ResponseEntity<>(commentService.findByCommentTable(commentTable),HttpStatus.OK);
 	}
 	
-	@GetMapping("/user/{commentUser}")
-	public List<Comment> listByUser(Integer commentUser){
+	@GetMapping(value="/user/{commentUser}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Comment>> listByUser(Integer commentUser){
 		logger.info("user looks at their comments");
-		return commentService.findCommentUser(commentUser);
+		return new ResponseEntity<>(commentService.findCommentUser(commentUser), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") Integer id) {
+	public ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
 		commentService.delete(id);
+		return new ResponseEntity<>(HttpStatus.GONE);
 	}
 
 }

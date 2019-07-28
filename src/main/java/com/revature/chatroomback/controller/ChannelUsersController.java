@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,20 +30,22 @@ public class ChannelUsersController {
 	private ChannelUsersService channelUsersService;
 
 	@PostMapping()
-	public @ResponseBody void register(@RequestBody ChannelUsers obj){
+	public @ResponseBody  ResponseEntity<HttpStatus>  register(@RequestBody ChannelUsers obj){
 		logger.info("UserController->save a new user", obj.getChannelUser());
 		channelUsersService.registerChannelUsers(obj);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public @ResponseBody void update(@PathVariable("id") Integer id,@RequestBody ChannelUsers user) {
+	public @ResponseBody ResponseEntity<HttpStatus> update(@PathVariable("id") Integer id,@RequestBody ChannelUsers user) {
 		logger.info("UserController->update" + id);
 		channelUsersService.update(user);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@GetMapping()
-	public List<ChannelUsers> list() {
-		return channelUsersService.list();
+	public @ResponseBody ResponseEntity<List<ChannelUsers>> properList() {
+		return new ResponseEntity<>(channelUsersService.list(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")

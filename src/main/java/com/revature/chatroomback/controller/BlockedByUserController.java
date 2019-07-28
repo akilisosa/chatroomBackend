@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -62,23 +63,21 @@ public class BlockedByUserController {
 		}
 	}
 
-	
-	
-	@GetMapping()
-	public List<BlockedByUser> list() {
-		return blockedByUserService.list();
-	}
 
-	@GetMapping("/{id}")
-	public List<BlockedByUser> findBlocked(@PathVariable("id") Integer id) {
-		return blockedByUserService.findBlocked(id);
+	@GetMapping(value="/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<List<BlockedByUser>> findBlocked(@PathVariable("id") Integer id) {
+				logger.info("somebody checked their block list");
+				List<BlockedByUser> list = blockedByUserService.findBlocked(id);
+				return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+	
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") Integer id) {
+	public @ResponseBody ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
 		String msg = " somebody forgave someone";
 		logger.info(msg);
 		blockedByUserService.delete(id);
+		return new ResponseEntity<>(HttpStatus.GONE);
 	}
 	
 }

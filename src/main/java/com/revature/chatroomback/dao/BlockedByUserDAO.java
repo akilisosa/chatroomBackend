@@ -16,9 +16,6 @@ public interface BlockedByUserDAO extends JpaRepository<BlockedByUser,Integer>{
 	@SuppressWarnings("unchecked")
 	BlockedByUser save(BlockedByUser obj);
 
-	@Query("select u from BlockedByUser u")
-	List<BlockedByUser> list();
-	
 	@Query("select u from BlockedByUser u where u.blockingUserId = :blockingUserId")
 	List<BlockedByUser> findBlocked(@Param("blockingUserId") Integer id);
 

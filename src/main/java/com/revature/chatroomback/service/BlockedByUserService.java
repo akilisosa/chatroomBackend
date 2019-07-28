@@ -8,17 +8,12 @@ import com.revature.chatroomback.models.BlockedByUser;
 public interface BlockedByUserService {
 
 	void registerBlockedByUser(BlockedByUser obj);
-
-	List<BlockedByUser> list();
 	
-	List<BlockedByUser> findBlocked(Integer id);
+	List<BlockedByUser> findBlocked(Integer blockingUser);
 	
 	Integer findUserIdandBlockedId(BlockedByUser obj);
 	
-	void delete(Integer id);
-
-	void update(BlockedByUser obj);
-	
+	void delete(Integer BlockedId);
 	
 
 }
