@@ -1,12 +1,13 @@
 package com.revature.chatroomback.service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import com.revature.chatroomback.models.User;
 
 public interface UserService {
 	
-	void registerUser(User user);
+	void registerUser(User user) throws SQLIntegrityConstraintViolationException;
 
 	List<User> list();
 	

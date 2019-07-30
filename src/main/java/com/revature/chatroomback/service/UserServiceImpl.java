@@ -1,5 +1,6 @@
 package com.revature.chatroomback.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -17,7 +18,7 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 	
 	@Transactional
-	public void registerUser(User user) {
+	public void registerUser(User user) throws SQLException {
 		userDAO.save(user);
 	}
 

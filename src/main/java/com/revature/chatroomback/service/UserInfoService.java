@@ -6,7 +6,7 @@ import com.revature.chatroomback.models.UserInfo;
 
 public interface UserInfoService {
 
-	void registerUserInfo(UserInfo userinfo);
+	void registerUserInfo(UserInfo obj);
 
 	List<UserInfo> list();
 	

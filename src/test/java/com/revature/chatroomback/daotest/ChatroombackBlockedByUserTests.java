@@ -1,5 +1,6 @@
 package com.revature.chatroomback.daotest;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
@@ -27,10 +28,12 @@ public class ChatroombackBlockedByUserTests {
 			obj.setBlockedUserId(1);
 			obj.setBlockingUserId(2);
 			
-			assertNull(chatroomCheck.doubleBlock(obj));
+			assertFalse(chatroomCheck.doubleBlock(obj));
 			
 			
 		}
+		
+
 		
 //		@Test
 //		

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+ 
 import com.revature.chatroomback.models.ChannelUsers;
 import com.revature.chatroomback.service.ChannelUsersService;
 
@@ -43,13 +44,14 @@ public class ChannelUsersController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@GetMapping()
+	@GetMapping(produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<List<ChannelUsers>> properList() {
 		return new ResponseEntity<>(channelUsersService.list(), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable("id") Integer id) {
+	public @ResponseBody ResponseEntity<HttpStatus> delete(@PathVariable("id") Integer id) {
 		channelUsersService.delete(id);
+		return new ResponseEntity<>(HttpStatus.GONE);
 	}
 }

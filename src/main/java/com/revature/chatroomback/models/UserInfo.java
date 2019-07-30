@@ -11,16 +11,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "BLOCKED_USERS")
+@Table(name = "CHAT_USER_INFO")
 public class UserInfo implements Serializable {
-
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8981853160890266421L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "chat_users_gen")
-	@SequenceGenerator(name = "chat_users_gen", sequenceName = "CHAT_USERS_seq", allocationSize = 1)
 	@Column(name = "CUI_ID")
 	private Integer id;
 	

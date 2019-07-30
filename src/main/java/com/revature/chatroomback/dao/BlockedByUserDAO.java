@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.revature.chatroomback.models.BlockedByUser;
 
-@Repository //this is for anything to talks the databse
+@Repository //this is for anything to talks the database
 public interface BlockedByUserDAO extends JpaRepository<BlockedByUser,Integer>{
 
 	@SuppressWarnings("unchecked")

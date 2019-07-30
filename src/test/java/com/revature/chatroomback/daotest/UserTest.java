@@ -1,6 +1,9 @@
 package com.revature.chatroomback.daotest;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.sql.SQLException;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +16,7 @@ import com.revature.chatroomback.models.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UpdatePasswordTest {
+public class UserTest {
 	
 	@Autowired
 	private UserDAO userDAO;
@@ -21,17 +24,18 @@ public class UpdatePasswordTest {
 	User user = new User();
 	
 	@Test
-	public void updatePassword() {
-		user.setId(1);
-		user.setEmail("akili@gmail.com");
-		user.setPassword("akili");
+	public void register() {
+		user.setEmail("juanf@gmail.com");
+		user.setPassword("pass123");
 		user.setStatus("active");
-		user.setAdminLvl("2");
+		user.setAdminLvl("1");
 		
-		assertNotNull(userDAO.save(user));
-		
+		try {
+		userDAO.save(user);
+		} catch (Exception e) {
+			assertTrue(true);
+		}
 		
 	}
-	
 
 }

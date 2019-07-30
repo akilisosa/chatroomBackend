@@ -1,5 +1,6 @@
 package com.revature.chatroomback.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.chatroomback.models.BlockedByUser;
+import com.revature.chatroomback.models.SuperUser;
 import com.revature.chatroomback.models.User;
+import com.revature.chatroomback.models.UserInfo;
+import com.revature.chatroomback.service.BlockedByUserService;
+import com.revature.chatroomback.service.UserInfoService;
+import com.revature.chatroomback.service.UserInfoServiceImpl;
 import com.revature.chatroomback.service.UserService;
 
 
@@ -31,12 +38,40 @@ Logger logger = LogManager.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserInfoService userInfoService;
+	
+	@Autowired
+	private BlockedByUserService blockedByUserService;
 
 	@PostMapping()
-	public @ResponseBody ResponseEntity<HttpStatus> register(@RequestBody User obj){
+	public @ResponseBody ResponseEntity<SuperUser> register(@RequestBody User obj){
 		logger.info("Registered a new User with email", obj.getEmail());
+		try {
 		userService.registerUser(obj);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		
+		User user = userService.findByEmailAndPassword(obj.getEmail(), obj.getPassword());
+		UserInfo newUserInfo = new UserInfo();
+		newUserInfo.setId(user.getId());
+		newUserInfo.setScreenName("annoymous"+user.getId());
+		newUserInfo.setImage("your_link_here");
+		userInfoService.registerUserInfo(newUserInfo);
+		
+		SuperUser superUser = new SuperUser();
+		superUser.setAdminLvl(user.getAdminLvl());;
+		superUser.setEmail(obj.getEmail());
+		superUser.setImage(newUserInfo.getImage());
+		superUser.setScreenName(newUserInfo.getScreenName());
+		superUser.setUserId(user.getId());
+		superUser.setPassword(obj.getPassword());
+		superUser.setStatus(user.getStatus());
+		
+		return new ResponseEntity<SuperUser>(superUser, HttpStatus.CREATED);
+		} catch (SQLException e) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);	
+		}
+		
 	}
 
 	@PutMapping("/{id}")
@@ -58,9 +93,21 @@ Logger logger = LogManager.getLogger(UserController.class);
 	}
 	
 	@PostMapping(value="/login/", produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<User> findByEmailAndPassword(@RequestParam("username")String email,@RequestParam("password") String password) {
+	public ResponseEntity<SuperUser> findByEmailAndPassword(@RequestParam("email")String email,@RequestParam("password") String password) {
 		User user = userService.findByEmailAndPassword(email, password);
-		return new ResponseEntity<>(user, HttpStatus.OK);
+		UserInfo userInfo = userInfoService.findOne(user.getId());
+		List<BlockedByUser> blockedList = blockedByUserService.findBlocked(user.getId());
+		
+		SuperUser superUser = new SuperUser();
+		superUser.setUserId(user.getId());
+		superUser.setAdminLvl(user.getAdminLvl());
+		superUser.setBirthYear(userInfo.getBirthYear());
+		superUser.setEmail(email);
+		superUser.setImage(userInfo.getImage());
+		superUser.setPassword(password);
+		superUser.setScreenName(userInfo.getScreenName());
+		superUser.setStatus(user.getStatus());
+		return new ResponseEntity<>(superUser, HttpStatus.OK);
 		
 	}
 	
