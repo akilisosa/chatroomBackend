@@ -1,6 +1,7 @@
 package com.revature.chatroomback.controller;
 
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -46,28 +47,34 @@ Logger logger = LogManager.getLogger(UserController.class);
 	private BlockedByUserService blockedByUserService;
 
 	@PostMapping()
-	public @ResponseBody ResponseEntity<SuperUser> register(@RequestBody User obj){
+	public @ResponseBody ResponseEntity<User> register(@RequestBody User obj){
 		logger.info("Registered a new User with email", obj.getEmail());
 		try {
+			
 		userService.registerUser(obj);
-		
 		User user = userService.findByEmailAndPassword(obj.getEmail(), obj.getPassword());
-		UserInfo newUserInfo = new UserInfo();
-		newUserInfo.setId(user.getId());
-		newUserInfo.setScreenName("annoymous"+user.getId());
-		newUserInfo.setImage("your_link_here");
-		userInfoService.registerUserInfo(newUserInfo);
 		
-		SuperUser superUser = new SuperUser();
-		superUser.setAdminLvl(user.getAdminLvl());;
-		superUser.setEmail(obj.getEmail());
-		superUser.setImage(newUserInfo.getImage());
-		superUser.setScreenName(newUserInfo.getScreenName());
-		superUser.setUserId(user.getId());
-		superUser.setPassword(obj.getPassword());
-		superUser.setStatus(user.getStatus());
+//		catch (SQLIntegrityConstraintViolationException e) {
+//			
+//		
+//		
+//		User user = userService.findByEmailAndPassword(obj.getEmail(), obj.getPassword());
+//		UserInfo newUserInfo = new UserInfo();
+//		newUserInfo.setId(user.getId());
+//		newUserInfo.setScreenName("annoymous"+user.getId());
+//		newUserInfo.setImage("your_link_here");
+//		userInfoService.registerUserInfo(newUserInfo);
+//		
+//		SuperUser superUser = new SuperUser();
+//		superUser.setAdminLvl(user.getAdminLvl());;
+//		superUser.setEmail(obj.getEmail());
+//		superUser.setImage(newUserInfo.getImage());
+//		superUser.setScreenName(newUserInfo.getScreenName());
+//		superUser.setUserId(user.getId());
+//		superUser.setPassword(obj.getPassword());
+//		superUser.setStatus(user.getStatus());
 		
-		return new ResponseEntity<SuperUser>(superUser, HttpStatus.CREATED);
+		return new ResponseEntity<User>(user, HttpStatus.CREATED);
 		} catch (SQLException e) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);	
 		}

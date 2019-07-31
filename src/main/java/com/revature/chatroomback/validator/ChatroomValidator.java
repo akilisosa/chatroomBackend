@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 
 import com.revature.chatroomback.models.BlockedByUser;
 import com.revature.chatroomback.models.Channel;
+import com.revature.chatroomback.models.User;
 import com.revature.chatroomback.service.BlockedByUserService;
 import com.revature.chatroomback.service.ChannelService;
+import com.revature.chatroomback.service.UserService;
 
 
 
@@ -57,5 +59,14 @@ public class ChatroomValidator {
 		}
 		return true;
 	}
+	
+//	@Autowired
+//	private UserService userService;
+//	public boolean alreadyRegisterd(User user) {
+//		User user = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+//		
+//	}
+	
+	
 
 }

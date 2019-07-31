@@ -18,7 +18,7 @@ public class UserServiceImpl implements UserService {
 	private UserDAO userDAO;
 	
 	@Transactional
-	public void registerUser(User user) throws SQLException {
+	public void registerUser(User user) {
 		userDAO.save(user);
 	}
 
@@ -44,7 +44,9 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	public User findByEmailAndPassword(String email, String password) {
-		return userDAO.findByEmailAndPassword(email, password);
+		User user = userDAO.findByEmailAndPassword(email, password);
+		//if (user == null) throw new 
+		return user;
 	}
 
 

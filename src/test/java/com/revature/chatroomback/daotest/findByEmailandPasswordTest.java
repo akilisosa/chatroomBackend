@@ -56,6 +56,7 @@ public class findByEmailandPasswordTest {
 	@Test
 	public void testWrongPassword() {
 		User her = userService.findByEmailAndPassword("akili@gmail.com", "password");
+		System.out.println(her);
 		assertNull(her);
 	}
 	

@@ -1,6 +1,8 @@
 package com.revature.chatroomback.daotest;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.SQLException;
 
@@ -40,13 +42,15 @@ public class registerNewUserTest {
 		newUser.setEmail("akilis@gmail.com");
 		newUser.setPassword("akili");
 		newUser.setStatus("active");
-		User user = userDao.save(newUser);
-		assertNotNull(user);
+		try {
+		userDao.save(newUser);
+		} catch (Exception e) {
+		assertTrue(true);
+		}
 	}
 	
 	@Test
 	public void testResponse() {
-		System.out.println("i hate you all");
 		User user = userDao.findByEmailAndPassword("akilis@gmail.com", "akili");
 		UserInfo newUserInfo = new UserInfo();
 		newUserInfo.setId(user.getId());
@@ -54,39 +58,7 @@ public class registerNewUserTest {
 		newUserInfo.setImage("your_link_here");
 		userInfoDao.save(newUserInfo);
 		UserInfo userInf = userInfoDao.findOne(user.getId());
-		System.out.println("userInf");
-		assertNotNull(userInf);
-		
-		
-	}
+		assertNotNull(userInf);	
+	}	
 	
 }
-//
-//@PostMapping()
-//public @ResponseBody ResponseEntity<SuperUser> register(@RequestBody User obj){
-//	logger.info("Registered a new User with email", obj.getEmail());
-//	try {
-//	userService.registerUser(obj);
-//	
-//	User user = userService.findByEmailAndPassword(obj.getEmail(), obj.getPassword());
-//	UserInfo newUserInfo = new UserInfo();
-//	newUserInfo.setId(user.getId());
-//	newUserInfo.setScreenName("annoymous"+user.getId());
-//	newUserInfo.setImage("your_link_here");
-//	userInfoService.registerUserInfo(newUserInfo);
-//	
-//	SuperUser superUser = new SuperUser();
-//	superUser.setAdminLvl(user.getAdminLvl());;
-//	superUser.setEmail(obj.getEmail());
-//	superUser.setImage(newUserInfo.getImage());
-//	superUser.setScreenName(newUserInfo.getScreenName());
-//	superUser.setUserId(user.getId());
-//	superUser.setPassword(obj.getPassword());
-//	superUser.setStatus(user.getStatus());
-//	
-//	return new ResponseEntity<SuperUser>(superUser, HttpStatus.CREATED);
-//	} catch (SQLException e) {
-//		return new ResponseEntity<>(HttpStatus.CONFLICT);	
-//	}
-//	
-//}

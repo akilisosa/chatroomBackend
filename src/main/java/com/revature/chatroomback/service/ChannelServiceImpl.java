@@ -23,7 +23,8 @@ public class ChannelServiceImpl implements ChannelService {
 
 	@Transactional
 	public List<Channel> list() {
-		return channel.list();
+		List<Channel> list = channel.list();
+		return list;
 	}
 	@Transactional
 	public List<Channel> listByUser(Channel obj) {

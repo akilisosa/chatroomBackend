@@ -27,23 +27,9 @@ public class ChatroombackBlockedByUserTests {
 			
 			obj.setBlockedUserId(1);
 			obj.setBlockingUserId(2);
-			
 			assertFalse(chatroomCheck.doubleBlock(obj));
 			
-			
 		}
-		
-
-		
-//		@Test
-//		
-//		public void doubleChannels() {
-//			
-//			channelObj.setChannelUser1(1);
-//			channelObj.setChannelUser2(2);
-//			chatroomCheck.multiplePM(channelObj);
-//		}
-		
 
 	
 }
